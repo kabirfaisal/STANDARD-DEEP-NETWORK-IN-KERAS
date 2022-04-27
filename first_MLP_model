@@ -1,0 +1,29 @@
+# first MLP with keras for classification
+
+#import libraries
+from numpy import loadtxt
+from keras.models import Sequential
+from keras.layers import Dense
+
+# load the dataset
+dataset = loadtxt('dataset', delimiter=',') #replace the dataset to csv file
+
+# split into input and output variables
+X = dataset[- , - ]
+y = dataset[- , - ]
+
+# define the sequential keras model
+model = Sequential()
+model.add(Dense(A, input_dim=B, activation='relu')) # replace A to hidden neuron number like 10, 20 or 50 etc.
+model.add(Dense(50, activation='relu'))
+model.add(Dense(1, activation='sigmoid')) # 1 indecated one output only
+
+# compile the keras model
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+# fit the keras model on the dataset
+model.fit(X, y, epochs=150, batch_size=16)
+
+# evaluate the keras model
+_, accuracy = model.evaluate(X, y)
+print('Accuracy: %.2f' % (accuracy*100))
